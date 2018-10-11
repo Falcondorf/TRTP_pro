@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/pikir/CLionProjects/TRTP/record.c
+record.h
+C:/Users/pikir/CLionProjects/TRTP/record.h
+
+C:/Users/pikir/CLionProjects/TRTP/record.h
+stdio.h
+-
+stdint.h
+-
+stdbool.h
+-
+
