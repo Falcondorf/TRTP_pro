@@ -6,10 +6,11 @@
 #include <stdbool.h>
 
 struct record {
- uint32_t  uuid;
  uint32_t type;
- uint32_t length;
  bool hasFooter;
+ uint32_t length;
+ uint32_t payload;
+ uint32_t  uuid;
 };
 
 

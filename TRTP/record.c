@@ -4,36 +4,48 @@
 
 int record_init(struct record *r)
 {
-    r->uuid = 0;
-    r->type = 0;
-    r->length = 0;
-    r->hasFooter = 0;
+    if((calloc(1, sizeof(struct record))) == NULL){
+        return 1;
+    }
     return 0;
 }
 
 void record_free(struct record *r)
 {
-
+    free(r);
 }
 
 int record_get_type(const struct record *r)
 {
-    return 0;
+    return r->type;
 }
 
 void record_set_type(struct record *r, int type)
 {
-
+    r->type = type;
 }
 
 int record_get_length(const struct record *r)
 {
-    return 0;
+    return r->length;
 }
 
 int record_set_payload(struct record *r,
                        const char * buf, int n)
 {
+    if(buf==NULL){
+        //TODO delete payload
+        r->length = 0;
+        r->payload = 0;
+    } else {
+        int count = 0;
+        //TODO set payload
+        r->length = n;
+        while (buf != NULL && count != n){
+
+        }
+    }
+
     return 0;
 }
 

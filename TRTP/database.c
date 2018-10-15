@@ -12,8 +12,8 @@ int main(int argc, const char **argv)
     if (record_init(&new_record)) {
         ERROR("Couldn't initialize a record!");
         return EXIT_FAILURE;
-    }else{
-        printf("Record initilized");
+    }else {
+        printf("Record initilized\n");
     }
 
     /* Some debug code be guarded in ifdef's
@@ -36,5 +36,14 @@ int main(int argc, const char **argv)
      * as an easy way to script a lot of tests.
      */
 
+    //TEST ON TYPE
+    record_set_type(&new_record, 21);
+    int t = record_get_type(&new_record);
+    printf("type = %d\n", t);
+
+    //TODO TEST ON LENGHT
+
+
+    record_free(&new_record); // Free memory alloction
     return EXIT_SUCCESS;
 }

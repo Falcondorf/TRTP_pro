@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/pikir/CLionProjects/TRTP/record.c
+C:/Users/pikir/CLionProjects/TRTP/database.c
+stdlib.h
+-
+stdio.h
+-
+macros.h
+C:/Users/pikir/CLionProjects/TRTP/macros.h
 record.h
 C:/Users/pikir/CLionProjects/TRTP/record.h
+
+C:/Users/pikir/CLionProjects/TRTP/macros.h
 
 C:/Users/pikir/CLionProjects/TRTP/record.h
 stdio.h
