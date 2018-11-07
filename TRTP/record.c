@@ -106,5 +106,9 @@ int record_write(const struct record *r, FILE *f)
 
 int record_read(struct record *r, FILE *f)
 {
-    return 0;
+    if (r == NULL || f == NULL) {
+        perror("parameters are NULL...");
+        return -1;
+    }
+    return fread(&r, sizeof(r),1,f);
 }

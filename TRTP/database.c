@@ -13,7 +13,16 @@ int main(int argc, const char **argv)
         ERROR("Couldn't initialize a record!");
         return EXIT_FAILURE;
     }else {
-        printf("Record initilized\n");
+        printf("New Record initilized\n");
+    }
+
+    struct record another_record;
+
+    if (record_init(&another_record)) {
+        ERROR("Couldn't initialize a record!");
+        return EXIT_FAILURE;
+    }else {
+        printf("Another Record initilized\n");
     }
 
     /* Some debug code be guarded in ifdef's
@@ -61,13 +70,14 @@ int main(int argc, const char **argv)
     //TEST ON FILES
     FILE * f = NULL;
     int nb_byte = 0;
-    if ((f = fopen("./test.txt", "wb")) == NULL){
+    if ((f = fopen("test.dat", "w+b")) == NULL){
         perror("Stream NULL...");
         return -1;
     }
     nb_byte = record_write(&new_record,f);
-    printf("Nb byte ecrits = %d", nb_byte);
-    //printf("Writing file?");
+    printf("Nb byte ecrits = %d\n", nb_byte);
+    record_read(&another_record,f);
+    printf("New record length = %d\n",record_get_length(&another_record));
 
     if (fclose(f) != 0){
         perror("File closing error...");
@@ -75,6 +85,7 @@ int main(int argc, const char **argv)
     }
 
     record_free(&new_record); // Free memory alloction
+    record_free(&another_record);
     free(c);
     return EXIT_SUCCESS;
 }
