@@ -43,7 +43,15 @@ int main(int argc, const char **argv)
 
     //TODO TEST ON LENGHT
 
+    record_set_payload(&new_record,"12345", 5);
+    int l = record_get_length(&new_record);
+    char* c = (char *) malloc(sizeof(char)*(l + 1));
+
+    record_get_payload(&new_record,c,5);
+    printf("Lenght payload = %d\n", l);
+    printf("Payload content = %s\n", c);
 
     record_free(&new_record); // Free memory alloction
+    free(c);
     return EXIT_SUCCESS;
 }
