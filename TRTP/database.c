@@ -41,8 +41,7 @@ int main(int argc, const char **argv)
     int t = record_get_type(&new_record);
     printf("type = %d\n", t);
 
-    //TODO TEST ON LENGHT
-
+    //TEST ON PAYLOAD
     record_set_payload(&new_record,"12345", 5);
     int l = record_get_length(&new_record);
     char* c = (char *) malloc(sizeof(char)*(l + 1));
@@ -50,6 +49,30 @@ int main(int argc, const char **argv)
     record_get_payload(&new_record,c,5);
     printf("Lenght payload = %d\n", l);
     printf("Payload content = %s\n", c);
+
+    //TEST ON FOOTER
+    printf("Before set :: Has a footer = %d\n", record_has_footer(&new_record));
+    record_set_uuid(&new_record, 123456);
+    printf("UUID = %d\n", record_get_uuid(&new_record));
+    printf("After set :: Has a footer = %d\n", record_has_footer(&new_record));
+    record_delete_footer(&new_record);
+    printf("After delete :: Has a footer = %d\n", record_has_footer(&new_record));
+
+    //TEST ON FILES
+    FILE * f = NULL;
+    int nb_byte = 0;
+    if ((f = fopen("./test.txt", "wb")) == NULL){
+        perror("Stream NULL...");
+        return -1;
+    }
+    nb_byte = record_write(&new_record,f);
+    printf("Nb byte ecrits = %d", nb_byte);
+    //printf("Writing file?");
+
+    if (fclose(f) != 0){
+        perror("File closing error...");
+        return -1;
+    }
 
     record_free(&new_record); // Free memory alloction
     free(c);
